@@ -2,11 +2,13 @@ import * as Inquirer from 'inquirer';
 import * as Fs from 'fs';
 import * as ChangeCase from 'change-case';
 import * as FindFolder from 'node-find-folder';
+import * as Minimist from 'minimist';
 import apiTemplate from './templates/ApiTemplate';
 import modelTemplate from './templates/ModelTemplate';
 import storeTemplate from './templates/StoreTemplate';
 import containerTemplate, { styles as containerTemplateStyles } from './templates/AreaTemplate/ContainerTemplate';
 import {Dictionary, TemplateChoice} from "../index";
+import {hasOwnProperty} from "tslint/lib/utils";
 
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
@@ -20,6 +22,8 @@ process.on('unhandledRejection', err => {
 
 const CURR_DIR = process.cwd();
 const ENCODING = 'utf8';
+
+const args = Minimist(process.argv.slice(2));
 
 export function startPrompt() {
     const CHOICES: Inquirer.ChoiceType[] = [
@@ -105,6 +109,10 @@ export function handleAnswers(answers: Inquirer.Answers, templateChoiceOverride?
             createArea(entityName);
             return;
     }
+
+    // if (hasOwnProperty(args, 'file-content')) {
+    //     fileContents = args['file-content'];
+    // }
 
     const singularFolder = new FindFolder(templateChoice);
     const pluralFolder = new FindFolder(pluralTemplateChoice);
