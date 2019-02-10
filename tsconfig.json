@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [ "es6", "dom" ],
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": false,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "lib",
+    "index.d.ts"
+  ]
+}
